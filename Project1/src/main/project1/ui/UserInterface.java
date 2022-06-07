@@ -12,13 +12,34 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Class UserInterface will interact with user to provide the functionalities that they want
+ *
+ * Project 1
+ * Class ICS 372
+ */
 public class UserInterface {
     private PetCompany company;
 
+    /**
+     * Constructor for UserInterface. Will create an object of PetCompany and load
+     * information from our sample input "Project1_input.json" when started
+     *
+     */
     public UserInterface () {
         company = new PetCompany("Project1_input.json");
     }
 
+    /**
+     * Show all the functionalities that the program can provide
+     *  - Type 1 to add new animal to our shelter
+     *  - Type 2 to enable receiving animal for a shelter
+     *  - Type 3 to disable receiving animal for a shelter
+     *  - Type 4 to export all animals from a shelter into a single JSON file
+     *  - Type 5 to show the list of current animals for each shelter
+     *  - Type 0 to quit
+     *
+     */
     public void showMenu () {
         System.out.println("Welcome to our Project 1: Pet adoption company app");
         System.out.println("We have already loaded the input file in the system");
@@ -32,6 +53,12 @@ public class UserInterface {
         System.out.println("Your option is: ");
     }
 
+    /**
+     * Take file name from user and call method addAnimal to add animal to the shelters
+     * File should be placed under resources folder and should have the same format as the sample JSON input
+     * @catch IOException, ParseException, ClassCastException
+     *
+     */
     public void addAnimal () {
         System.out.println("Please notice that all input file should be placed under resources folder");
         System.out.println("Please notice that the format of the file should be similar to the format of the example JSON input file");
@@ -54,6 +81,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Take shelter ID from user and call method enableReceivingAnimal from PetCompany to enable shelter receiving animal
+     * If the shelter ID is invalid, inform the user
+     *
+     */
     public void enableReceivingAnimal () {
         System.out.println ("Please enter the shelter ID that you want to enable receiving animal");
         Scanner scanner = new Scanner(System.in);
@@ -66,6 +98,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Take shelter ID from user and call method disableReceivingAnimal from PetCompany to disable shelter receiving animal
+     * If the shelter ID is invalid, inform the user
+     *
+     */
     public void disableReceivingAnimal () {
         System.out.println ("Please enter the shelter ID that you want to disable receiving animal");
         Scanner scanner = new Scanner(System.in);
@@ -78,6 +115,12 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Take shelter ID from user and call method exportAnimalListJSON from PetCompany to get the JSONObject object
+     * If the shelter ID is invalid, inform the user
+     * Print the JSONObject to the screen
+     *
+     */
     public void exportAnimalListJSON () {
         System.out.println ("Please enter the shelter ID that you want to export all animals into a single JSON file");
         Scanner scanner = new Scanner(System.in);
@@ -91,7 +134,12 @@ public class UserInterface {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         System.out.println( gson.toJson(animalListJSON));
     }
-
+    /**
+     * Take shelter ID from user and call method showAnimalList from PetCompany to get the list of animals
+     * If the shelter ID is invalid, inform the user
+     * Print the list of animals to the screen in a nice way
+     *
+     */
     public void showAnimalList () {
         System.out.println ("Please enter the shelter ID that you want to show the list of current animals");
         Scanner scanner = new Scanner(System.in);
@@ -111,30 +159,34 @@ public class UserInterface {
         }
     }
 
-    public static void main (String[] args) {
-        UserInterface ui = new UserInterface();
+    /**
+     * Main method to run the program
+     * An infinite loop of querying until the user type 0
+     *
+     */
+    public void run () {
         boolean isRunning = true;
         while (isRunning) {
-            ui.showMenu();
+            showMenu();
             try {
                 Scanner scanner = new Scanner(System.in);
                 int option = scanner.nextInt();
                 scanner.nextLine();
                 switch (option) {
                     case 1:
-                        ui.addAnimal();
+                        addAnimal();
                         break;
                     case 2:
-                        ui.enableReceivingAnimal();
+                        enableReceivingAnimal();
                         break;
                     case 3:
-                        ui.disableReceivingAnimal();
+                        disableReceivingAnimal();
                         break;
                     case 4:
-                        ui.exportAnimalListJSON();
+                        exportAnimalListJSON();
                         break;
                     case 5:
-                        ui.showAnimalList();
+                        showAnimalList();
                         break;
                     case 0:
                         isRunning = false;
@@ -153,5 +205,10 @@ public class UserInterface {
                 scanner.nextLine();
             }
         }
+    }
+
+    public static void main (String[] args) {
+        UserInterface ui = new UserInterface();
+        ui.run();
     }
 }
