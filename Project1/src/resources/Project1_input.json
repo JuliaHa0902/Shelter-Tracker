@@ -1,0 +1,36 @@
+{
+   "shelter_roster":[
+      {
+         "shelter_id":"12513",
+	  "animal_type":"dog",
+	  "animal_name":"Lucky",
+         "animal_id":"48934j",
+	  "weight": 20,
+	  "receipt_date": 1515354694451
+      },
+      {
+         "shelter_id":"15566",
+	  "animal_type":"cat",
+	  "animal_name":"Ms. Mouser",
+         "animal_id":"1adf4",
+  "weight":12,
+	  "receipt_date": 1515354694451
+      },
+	  {
+         "shelter_id":"15566",
+	  "animal_type":"bird",
+	  "animal_name":"Whistler",
+         "animal_id":"1a545",
+	  "weight": 2,
+	  "receipt_date": 1515354694451
+      },
+	  {
+         "shelter_id":"336558",
+	  "animal_type":"rabbit",
+	  "animal_name":"Peter",
+         "animal_id":"85545",
+	  "weight": 6,
+	  "receipt_date": 1515354694451
+      }	  
+   ]
+}
