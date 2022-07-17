@@ -1,0 +1,95 @@
+<Shelters>
+<Shelter id="54321">
+<Name>Test Shelter</Name>
+   <Animal type = "cat" id="9876">
+      <Name>New Name</Name>
+      <Weight>10.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+   <Animal type = "cat" id="12345">
+      <Name>Happy</Name>
+      <Weight>10.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+   <Animal type = "doc" id="12346">
+      <Name>Funny</Name>
+      <Weight>20.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+</Shelter>
+<Shelter id="485">
+<Name>Animals are Great</Name>
+   <Animal type = "cat" id="151e5dde">
+      <Name>Claws Monet</Name>
+      <Weight>4.95</Weight>
+      <ReceiptDate>1732299329</ReceiptDate>
+   </Animal>
+   <Animal type = "bird" id="ern222">
+      <Name>Polly</Name>
+      <Weight>0.54</Weight>
+      <ReceiptDate>1732279329</ReceiptDate>
+   </Animal>
+   <Animal type = "dog" id="52523">
+      <Name>Bruiser</Name>
+      <Weight>73.00</Weight>
+      <ReceiptDate>1732239329</ReceiptDate>
+   </Animal>
+   <Animal type = "rabbit" id="15dde">
+      <Name>Mopsy</Name>
+      <Weight>2.60</Weight>
+      <ReceiptDate>0</ReceiptDate>
+   </Animal>
+</Shelter>
+<Shelter id="2022">
+<Name>Whatever</Name>
+   <Animal type = "cat" id="123abc">
+      <Name>Hello</Name>
+      <Weight>20.00</Weight>
+      <ReceiptDate>1515364694451</ReceiptDate>
+   </Animal>
+   <Animal type = "cat" id="1kd4f">
+      <Name>World</Name>
+      <Weight>12.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+</Shelter>
+<Shelter id="15566">
+<Name>Afternoon</Name>
+   <Animal type = "cat" id="1adf4">
+      <Name>Ms. Mouser</Name>
+      <Weight>12.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+   <Animal type = "bird" id="b876">
+      <Name>Whatever</Name>
+      <Weight>2.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+   <Animal type = "rabbit" id="324kd">
+      <Name>Still Thinking</Name>
+      <Weight>6.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+   <Animal type = "bird" id="1a545">
+      <Name>Whistler</Name>
+      <Weight>2.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+</Shelter>
+<Shelter id="12513">
+<Name>Morning</Name>
+   <Animal type = "dog" id="48934j">
+      <Name>Lucky</Name>
+      <Weight>20.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+</Shelter>
+<Shelter id="336558">
+<Name>Evening</Name>
+   <Animal type = "rabbit" id="85545">
+      <Name>Peter</Name>
+      <Weight>6.00</Weight>
+      <ReceiptDate>1515354694451</ReceiptDate>
+   </Animal>
+</Shelter>
+</Shelters>

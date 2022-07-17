@@ -1,0 +1,40 @@
+{
+   "shelter_roster":[
+      {
+         "shelter_id":"2022",
+"shelter_name":"Whatever",
+	  "animal_type":"cat",
+	  "animal_name":"Hello",
+         "animal_id":"123abc",
+	  "weight": 20,
+	  "receipt_date": 1515364694451
+      },
+      {
+         "shelter_id":"2022",
+"shelter_name":"Different Name",
+	  "animal_type":"cat",
+	  "animal_name":"World",
+          "animal_id":"1kd4f",
+	  "weight":12,
+	  "receipt_date": 1515354694451
+      },
+	  {
+         "shelter_id":"15566",
+"shelter_name":"Afternoon",
+	  "animal_type":"bird",
+	  "animal_name":"Whatever",
+         "animal_id":"b876",
+	  "weight": 2,
+	  "receipt_date": 1515354694451
+      },
+	  {
+         "shelter_id":"15566",
+"shelter_name":"Afternoon",
+	  "animal_type":"rabbit",
+	  "animal_name":"Still Thinking",
+         "animal_id":"324kd",
+	  "weight": 6,
+	  "receipt_date": 1515354694451
+      }	  
+   ]
+}
