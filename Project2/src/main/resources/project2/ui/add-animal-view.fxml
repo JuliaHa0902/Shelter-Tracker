@@ -17,7 +17,7 @@
       <Button layoutX="367.0" layoutY="215.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
       <ChoiceBox fx:id="cbType" layoutX="254.0" layoutY="116.0" prefHeight="25.0" prefWidth="189.0" />
       <Label layoutX="81.0" layoutY="120.0" text="Choose the type of file" />
-      <Label layoutX="45.0" layoutY="169.0" text="Enter the name of file (no extension)" />
+      <Label layoutX="45.0" layoutY="169.0" text="Enter the name of file (NO extension)" />
       <TextField fx:id="tfFileName" layoutX="254.0" layoutY="165.0" prefHeight="25.0" prefWidth="189.0" />
       <Button layoutX="254.0" layoutY="215.0" mnemonicParsing="false" onAction="#onImportClick" text="Import" />
       <Label fx:id="lbResult" layoutX="81.0" layoutY="257.0" />

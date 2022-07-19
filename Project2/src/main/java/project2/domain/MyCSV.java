@@ -7,7 +7,13 @@ import java.io.IOException;
 import java.util.List;
 import com.opencsv.*;
 
+/**
+ * Support class to read and write to a CSV file
+ */
 public class MyCSV {
+    /**
+     * read CSV filename, return a list of String[]
+     */
     public List<String[]> readCSV (String fileName) {
         String filePath = MyPath.getDatabasePath(fileName);
         List<String[]> allData = null;
@@ -22,6 +28,9 @@ public class MyCSV {
         return allData;
     }
 
+    /**
+     * write data to CSV fileName
+     */
     public void writeCSV (String fileName, List <String[]> data) {
         String filePath = MyPath.getDatabasePath(fileName);
         try {

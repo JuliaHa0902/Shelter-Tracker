@@ -18,6 +18,10 @@ import java.net.URL;
 import org.json.simple.parser.ParseException;
 import java.util.ResourceBundle;
 
+/**
+ * Class AddAnimalController controls the logic in add-animal-view
+ * @author Dung Thi Thuy Ha
+ */
 public class AddAnimalController implements Initializable {
     private Stage stage;
     private Scene scene;
@@ -35,6 +39,9 @@ public class AddAnimalController implements Initializable {
     private String[] typeList = {"XML", "JSON"};
 
 
+    /**
+     * add animal to database
+     */
     @FXML
     void onImportClick(ActionEvent event) {
         String type = cbType.getValue();
@@ -57,7 +64,10 @@ public class AddAnimalController implements Initializable {
         }
     }
 
-        @FXML
+    /**
+     * return to main-view
+     */
+    @FXML
     void onBackClick(ActionEvent event) {
         fxmlLoader = new FXMLLoader(getClass().getResource("/project2/ui/main-view.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

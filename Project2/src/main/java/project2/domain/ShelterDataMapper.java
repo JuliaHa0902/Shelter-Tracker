@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class ShelterDataMapper maps the information of the object to Shelter database
+ * @author Dung Thi Thuy Ha
+ */
 public class ShelterDataMapper implements IShelterDataMapper{
     /**
      * get information from Shelter Database and Animal_Shelter database
      * return as a Shelter object
-     *
      * @return Shelter object
      */
     @Override
@@ -35,7 +38,7 @@ public class ShelterDataMapper implements IShelterDataMapper{
     }
 
     /**
-     * update shelter information in Shelter Database and Animal_Shelter database
+     * update shelter information in Shelter Database
      */
     @Override
     public void update(Shelter shelter) {
@@ -52,7 +55,7 @@ public class ShelterDataMapper implements IShelterDataMapper{
     }
 
     /**
-     * insert a new shelter to Shelter Database and Animal_Shelter database
+     * insert a new shelter to Shelter Database
      */
     @Override
     public void insert(Shelter shelter) {
@@ -71,6 +74,9 @@ public class ShelterDataMapper implements IShelterDataMapper{
         //Isn't required for this project
     }
 
+    /**
+     * return all shelters inside this database
+     */
     public Map<String, Shelter> getShelterList () {
         MyCSV myCSV = new MyCSV();
         List<String[]> shelterData = myCSV.readCSV("shelter.csv");
@@ -93,6 +99,9 @@ public class ShelterDataMapper implements IShelterDataMapper{
        return shelterList;
     }
 
+    /**
+     * return a map contains all animals in shelterId
+     */
     private Map<String, Animal> getAnimalList (String shelterId) {
         MyCSV myCSV = new MyCSV();
         AnimalDataMapper animalDataMapper = new AnimalDataMapper();

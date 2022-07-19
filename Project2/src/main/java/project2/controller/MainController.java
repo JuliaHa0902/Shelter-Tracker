@@ -13,11 +13,16 @@ import javafx.stage.Stage;
 import project2.domain.Animal;
 import project2.domain.PetCompany;
 import project2.domain.MyBuffer;
+import project2.domain.Shelter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Class MainController controls the logic in main-view
+ * @author Dung Thi Thuy Ha
+ */
 public class MainController implements Initializable {
     public static final int FAILED = -1;
     private Stage stage;
@@ -30,9 +35,6 @@ public class MainController implements Initializable {
     @FXML
     private TextField tfAnimalId;
 
-//    @FXML
-//    private TextField tfShelterId;
-
     @FXML
     private Label lbResult;
 
@@ -40,6 +42,9 @@ public class MainController implements Initializable {
     private ChoiceBox<String> cbShelterSelected;
     private PetCompany petCompany = new PetCompany();
 
+    /**
+     * Change to add-animal-view when button "Add Animal" is clicked
+     */
     @FXML
     void onAddAnimalClick(ActionEvent event) {
         fxmlLoader = new FXMLLoader(getClass().getResource("/project2/ui/add-animal-view.fxml"));
@@ -53,6 +58,9 @@ public class MainController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Change to shelter-info-view when clicked. This view will show the chosen shelter's information
+     */
     @FXML
     void onGetInfoClick(ActionEvent event) {
         String choice = cbShelterSelected.getValue();
@@ -72,18 +80,29 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * return the chosen animal information
+     */
     @FXML
     void onSearchAnimalClick(ActionEvent event) {
         Animal animal = petCompany.getAnimalInfo(tfAnimalId.getText());
         if (animal == null) {
             lbAnimalInfo.setText("Invalid animal ID");
         } else {
-            String animalInfo = String.format("Animal name: %s (id: %s)\nShelter id: %s\nType: %s   Weight:%.2f   Receipt Date: %s\n",
-                    animal.getName(), animal.getAnimalId(), animal.getShelterId(), animal.getAnimalType(), animal.getWeight(), animal.getReceiptDate());
+            Shelter shelter = petCompany.getShelterInfo(animal.getShelterId());
+            String shelterName;
+            if (shelter == null) {
+                shelterName = "Error Loading";
+            } else shelterName = shelter.getName();
+            String animalInfo = String.format("Animal name: %s (id: %s)\nShelter id: %s   Shelter name: %s\nType: %s   Weight:%.2f   Receipt Date: %s\n",
+                    animal.getName(), animal.getAnimalId(), animal.getShelterId(), shelterName, animal.getAnimalType(), animal.getWeight(), animal.getReceiptDate());
             lbAnimalInfo.setText(animalInfo);
         }
     }
 
+    /**
+     * export all animal information to resources folder under name shelterExport.json
+     */
     @FXML
     void onExportJSONClick(ActionEvent event) {
         int result = petCompany.exportAnimalList("JSON");
@@ -94,6 +113,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * export all animal information to resources folder under name shelterExport.xml
+     */
     @FXML
     void onExportXMLClick(ActionEvent event) {
         int result = petCompany.exportAnimalList("XML");

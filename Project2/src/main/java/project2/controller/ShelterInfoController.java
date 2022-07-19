@@ -23,6 +23,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+/**
+ * Class ShelterInfoController controls the logic in shelter-info-view
+ * @author Dung Thi Thuy Ha
+ */
 public class ShelterInfoController implements Initializable {
     @FXML
     private Label lbInTaking;
@@ -46,6 +50,9 @@ public class ShelterInfoController implements Initializable {
     private PetCompany petCompany = new PetCompany();
 
 
+    /**
+     * Toggle on/off in taking
+     */
     @FXML
     void onInTakingButton(ActionEvent event) {
         if (tbInTaking.isSelected()) {
@@ -57,6 +64,9 @@ public class ShelterInfoController implements Initializable {
         }
     }
 
+    /**
+     * return to main-view
+     */
     @FXML
     void onBackClick(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/project2/ui/main-view.fxml"));
