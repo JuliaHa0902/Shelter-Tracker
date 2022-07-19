@@ -160,6 +160,8 @@ public class PetCompany {
     public String[] getShelterList () {
         IShelterDataMapper shelterDataMapper = new ShelterDataMapper();
         Map<String, Shelter> shelterMap = shelterDataMapper.getShelterList();
+        if (shelterMap == null)
+            return new String[0];
         String[] shelterList = new String[shelterMap.size()];
         int i = 0;
         for (String key: shelterMap.keySet()) {
