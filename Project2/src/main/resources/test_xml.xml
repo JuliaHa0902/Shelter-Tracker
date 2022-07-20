@@ -1,0 +1,10 @@
+<Shelters>
+<Shelter id="54321">
+<Name>Test Shelter</Name>
+<Animal type="rabbit" id="abcd">
+<Weight unit="kg">2.6</Weight>
+<ReceiptDate>1732279329</ReceiptDate>
+<Name>Lucky</Name>
+</Animal>
+</Shelter>
+</Shelters>

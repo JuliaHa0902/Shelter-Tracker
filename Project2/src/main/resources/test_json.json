@@ -1,0 +1,13 @@
+{
+   "shelter_roster":[
+      {
+         "shelter_id":"54321",
+	"shelter_name":"Test Shelter",
+	  "animal_type":"dog",
+	  "animal_name":"Lucky",
+         "animal_id":"abcd",
+	  "weight": 20,
+	  "receipt_date": 1515354694451
+      }
+   ]
+}

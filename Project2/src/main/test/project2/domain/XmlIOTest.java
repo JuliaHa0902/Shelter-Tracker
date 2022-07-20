@@ -11,13 +11,13 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class JsonIOTest {
+public class XmlIOTest {
 
     @Test
     public void convert() {
-        JsonIO jsonIO = new JsonIO();
+        XmlIO xmlIO = new XmlIO();
         try {
-            Map<String, Shelter> shelterGet = jsonIO.convert("test_json");
+            Map<String, Shelter> shelterGet = xmlIO.convert("test_xml");
             assertEquals(shelterGet.get("54321").getName(), "Test Shelter");
             assertEquals(shelterGet.get("54321").getAnimalList().size(), 1);
             Map<String, Animal> animalMap = shelterGet.get("54321").getAnimalList();
@@ -31,7 +31,7 @@ public class JsonIOTest {
 
     @Test
     public void dataExport() {
-        JsonIO jsonIO = new JsonIO();
+        XmlIO xmlIO = new XmlIO();
         Map <String, Shelter> shelterMap = new HashMap<>();
         Shelter shelter = new Shelter("12345", "Test Shelter");
         Float weight = Float.parseFloat("1.2");
@@ -40,8 +40,8 @@ public class JsonIOTest {
         shelter.addAnimal(animal);
         shelterMap.put("12345", shelter);
         try {
-            jsonIO.dataExport(shelterMap);
-            Map<String, Shelter> shelterGet = jsonIO.convert("shelterExport");
+            xmlIO.dataExport(shelterMap);
+            Map<String, Shelter> shelterGet = xmlIO.convert("shelterExport");
             assertEquals(shelterGet.get("12345").getName(), "Test Shelter");
             assertEquals(shelterGet.get("12345").getAnimalList().size(), 1);
             Map<String, Animal> animalMap = shelterGet.get("12345").getAnimalList();
@@ -53,6 +53,5 @@ public class JsonIOTest {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

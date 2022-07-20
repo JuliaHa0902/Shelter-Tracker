@@ -1,20 +1,16 @@
 package project2.domain;
-import org.junit.jupiter.api.Test;
-import project2.domain.Animal;
-import project2.domain.AnimalDataMapper;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class AnimalDataMapperTest {
+import static org.junit.Assert.*;
+
+public class AnimalDataMapperTest {
 
     @Test
-    void get() {
+    public void get() {
         AnimalDataMapper animalDataMapper = new AnimalDataMapper();
         Animal animal = animalDataMapper.get("12345");
-        assertEquals (animal.getName(), "Happy");
+        assertEquals(animal.getName(), "Happy");
     }
 
-    @Test
-    void insert() {
-    }
 }
