@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.MainActivity">
+
+    <TextView
+        android:id="@+id/tvMainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="Shelter Tracker"
+        android:textColor="#673AB7"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tvFindAnimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvMainTitle"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="Find Animal by ID"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/inAnimalId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvFindAnimal"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:hint="Animal ID"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/btSearchAnimal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search animal"
+        android:layout_below="@id/inAnimalId"
+        android:layout_centerHorizontal="true"
+        android:onClick="searchAnimal"
+        />
+
+    <TextView
+        android:id="@+id/tvFindShelter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btSearchAnimal"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="Find Shelter by ID"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/inShelterId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvFindShelter"
+        android:hint="Shelter ID"
+        android:inputType="text"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        />
+
+    <Button
+        android:id="@+id/btSearchShelter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inShelterId"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/purple_200"
+        android:text="Search shelter"
+        android:onClick="searchShelter"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Animal List"
+            android:id="@+id/btAnimalList"
+            android:onClick="showAnimalList"/>
+
+        <Button
+            android:id="@+id/btShelterList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/purple_200"
+            android:text="Shelter List"
+            android:onClick="showShelterList"/>
+    </LinearLayout>
+
+</RelativeLayout>

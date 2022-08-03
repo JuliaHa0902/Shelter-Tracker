@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.ShelterActivity">
+    <TextView
+        android:id="@+id/tvShelterId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Invalid Shelter"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:textColor="#673AB7"
+        android:textSize="34sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tvShelterName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvShelterId"
+        android:layout_marginTop="20dp"
+        android:text="Shelter name"
+        android:gravity="center"
+        android:textSize="16sp" />
+    <Switch
+        android:id="@+id/swInTaking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvShelterName"
+        android:layout_centerHorizontal="true"
+        android:text="Enable In taking" />
+    <ListView
+        android:id="@+id/animallist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/swInTaking"
+        android:layout_above="@id/btBackButtons"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btBackButtons">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Shelter List"
+            android:id="@+id/btBackShelterList"
+            android:onClick="backShelterList"/>
+
+        <Button
+            android:id="@+id/btBackHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/purple_200"
+            android:text="Home"
+            android:onClick="backHome"/>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
