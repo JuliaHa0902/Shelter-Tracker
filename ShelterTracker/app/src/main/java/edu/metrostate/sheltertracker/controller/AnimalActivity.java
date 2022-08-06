@@ -82,11 +82,16 @@ public class AnimalActivity extends AppCompatActivity {
             message = "Animal has already left the shelter!";
         } else {
             message = "Release success!";
+            Animal animal = ((ShelterTrackerApplication)getApplication()).getAnimalInfo(animalId);
+            Shelter shelter = ((ShelterTrackerApplication)getApplication()).getShelterInfo(animal.getShelterId());
+            String animalInfo;
+            if (shelter != null) {
+                animalInfo = getAnimalInfo(animal, shelter.getShelterName());
+            } else {
+                animalInfo = getAnimalInfo(animal, "N/A");
+            }
+            tvAnimalInfo.setText(animalInfo);
         }
-        Animal animal = ((ShelterTrackerApplication)getApplication()).getAnimalInfo(animalId);
-        Shelter shelter = ((ShelterTrackerApplication)getApplication()).getShelterInfo(animal.getShelterId());
-        String animalInfo = getAnimalInfo(animal, shelter.getShelterName());
-        tvAnimalInfo.setText(animalInfo);
 
         Dialog dialog = new AlertDialog.Builder(this).setTitle("Release Animal").setCancelable(false)
                 .setMessage(message)
