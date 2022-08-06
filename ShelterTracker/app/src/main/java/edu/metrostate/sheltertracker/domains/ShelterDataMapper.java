@@ -1,5 +1,9 @@
 package edu.metrostate.sheltertracker.domains;
 
+import android.content.Context;
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +13,37 @@ import java.util.Map;
  * @author Dung Thi Thuy Ha
  */
 public class ShelterDataMapper implements IShelterDataMapper{
+    Context context;
+
+    public ShelterDataMapper (Context context) {
+        this.context = context;
+        MyCSV myCSV = new MyCSV();
+        List<String[]> shelterData = myCSV.readCSV(this.context, "shelter.csv");
+        if (shelterData == null)
+            shelterData = createFile();
+        List<String[]> animalShelterData = myCSV.readCSV(this.context, "animal.csv");
+        if (animalShelterData == null) {
+            animalShelterData = createAnimalShelterFile();
+        }
+    }
+
+    private List<String[]> createFile () {
+        MyCSV myCSV = new MyCSV();
+        List<String[]> shelterData = new ArrayList<>();
+        String[] data = {"shelter_id", "shelter_name", "in_taking"};
+        shelterData.add(data);
+        myCSV.writeCSV(this.context, "shelter.csv", shelterData);
+        return shelterData;
+    }
+
+    private List<String[]> createAnimalShelterFile() {
+        MyCSV myCSV = new MyCSV();
+        List<String[]> animalShelterData = new ArrayList<>();
+        String[] data = {"animal_id", "shelter_id"};
+        animalShelterData.add(data);
+        myCSV.writeCSV(this.context, "animal_shelter.csv", animalShelterData);
+        return animalShelterData;
+    }
     /**
      * get information from Shelter Database and Animal_Shelter database
      * return as a Shelter object
@@ -19,11 +54,12 @@ public class ShelterDataMapper implements IShelterDataMapper{
         MyCSV myCSV = new MyCSV();
         Shelter shelter = new Shelter(shelterId);
         boolean found = false;
-        List<String[]> shelterData = myCSV.readCSV("shelter.csv");
+        List<String[]> shelterData = myCSV.readCSV(this.context, "shelter.csv");
+
         for (int i = 1; i < shelterData.size(); i++) {
             if (shelterData.get(i)[0].equals(shelterId)) {
                 found = true;
-                shelter.setName(shelterData.get(i)[1]);
+                shelter.setShelterName(shelterData.get(i)[1]);
                 shelter.setInTaking(Boolean.parseBoolean(shelterData.get(i)[2]));
                 break;
             }
@@ -43,15 +79,16 @@ public class ShelterDataMapper implements IShelterDataMapper{
     @Override
     public void update(Shelter shelter) {
         MyCSV myCSV = new MyCSV();
-        List<String[]> shelterData = myCSV.readCSV("shelter.csv");
+        List<String[]> shelterData = myCSV.readCSV(this.context, "shelter.csv");
+
         for (int i = 1; i < shelterData.size(); i++) {
-            if (shelterData.get(i)[0].equals(shelter.getId())) {
-                shelterData.get(i)[1] = shelter.getName();
+            if (shelterData.get(i)[0].equals(shelter.getShelterId())) {
+                shelterData.get(i)[1] = shelter.getShelterName();
                 shelterData.get(i)[2] = Boolean.toString(shelter.getInTaking());
                 break;
             }
         }
-        myCSV.writeCSV("shelter.csv", shelterData);
+        myCSV.writeCSV(this.context, "shelter.csv", shelterData);
     }
 
     /**
@@ -60,13 +97,14 @@ public class ShelterDataMapper implements IShelterDataMapper{
     @Override
     public void insert(Shelter shelter) {
         MyCSV myCSV = new MyCSV();
-        List<String[]> shelterData = myCSV.readCSV("shelter.csv");
+        List<String[]> shelterData = myCSV.readCSV(this.context, "shelter.csv");
+
         String[] newShelter = new String[3];
-        newShelter[0] = shelter.getId();
-        newShelter[1] = shelter.getName();
+        newShelter[0] = shelter.getShelterId();
+        newShelter[1] = shelter.getShelterName();
         newShelter[2] = Boolean.toString(shelter.getInTaking());
         shelterData.add(newShelter);
-        myCSV.writeCSV("shelter.csv", shelterData);
+        myCSV.writeCSV(this.context, "shelter.csv", shelterData);
     }
 
     @Override
@@ -79,22 +117,24 @@ public class ShelterDataMapper implements IShelterDataMapper{
      */
     public Map<String, Shelter> getShelterList () {
         MyCSV myCSV = new MyCSV();
-        List<String[]> shelterData = myCSV.readCSV("shelter.csv");
-        List<String[]> animalShelterData = myCSV.readCSV("animal_shelter.csv");
-        AnimalDataMapper animalDataMapper = new AnimalDataMapper();
+        List<String[]> shelterData = myCSV.readCSV(this.context, "shelter.csv");
+
+        List<String[]> animalShelterData = myCSV.readCSV(this.context, "animal_shelter.csv");
+
+        AnimalDataMapper animalDataMapper = new AnimalDataMapper(this.context);
         Map <String, Shelter> shelterList = new HashMap<>();
         for (int i = 1; i < shelterData.size(); i++) {
             Shelter shelter = new Shelter(shelterData.get(i)[0]);
-            shelter.setName(shelterData.get(i)[1]);
+            shelter.setShelterName(shelterData.get(i)[1]);
             shelter.setInTaking(Boolean.parseBoolean(shelterData.get(i)[2]));
             for (int j = 1; j < animalShelterData.size(); j++) {
                 String shelterId = animalShelterData.get(j)[1];
-                if (shelterId.equals(shelter.getId())) {
+                if (shelterId.equals(shelter.getShelterId())) {
                     Animal animal = animalDataMapper.get(animalShelterData.get(j)[0]);
                     shelter.addAnimal(animal);
                 }
             }
-            shelterList.put(shelter.getId(), shelter);
+            shelterList.put(shelter.getShelterId(), shelter);
         }
        return shelterList;
     }
@@ -102,11 +142,12 @@ public class ShelterDataMapper implements IShelterDataMapper{
     /**
      * return a map contains all animals in shelterId
      */
-    private Map<String, Animal> getAnimalList (String shelterId) {
+    public Map<String, Animal> getAnimalList (String shelterId) {
         MyCSV myCSV = new MyCSV();
-        AnimalDataMapper animalDataMapper = new AnimalDataMapper();
+        AnimalDataMapper animalDataMapper = new AnimalDataMapper(this.context);
         Map<String, Animal> animalList = new HashMap<>();
-        List<String[]> animalShelterData = myCSV.readCSV("animal_shelter.csv");
+        List<String[]> animalShelterData = myCSV.readCSV(this.context, "animal_shelter.csv");
+
         for (int i = 1; i < animalShelterData.size(); i++) {
             String animalId = animalShelterData.get(i)[0];
             if (animalShelterData.get(i)[1].equals(shelterId)) {

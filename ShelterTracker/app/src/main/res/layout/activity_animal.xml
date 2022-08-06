@@ -8,20 +8,23 @@
 
 
     <TextView
-        android:id="@+id/tvAnimalId"
+        android:id="@+id/tvAnimalName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Invalid Animal"
-        android:layout_margin="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
+        android:text="Invalid Animal"
         android:textColor="#673AB7"
         android:textSize="34sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/tvAnimalInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvAnimalId"
+        android:layout_below="@id/tvAnimalName"
         android:text=""
         android:gravity="center"
         android:textSize="16sp" />
@@ -32,7 +35,8 @@
         android:layout_below="@id/tvAnimalInfo"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/purple_200"
-        android:text="Delete Animal" />
+        android:text="Release Animal"
+        android:onClick="releaseAnimal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Animal List"
-            android:id="@+id/btBackAnimalList"/>
+            android:id="@+id/btBackAnimalList"
+            android:onClick="backAnimalList"/>
 
         <Button
             android:id="@+id/btBackHome"
@@ -54,5 +59,6 @@
             android:text="Home"
             android:onClick="backHome"/>
     </LinearLayout>
+
 
 </RelativeLayout>

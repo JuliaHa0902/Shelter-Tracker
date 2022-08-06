@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".controller.ShelterActivity">
     <TextView
-        android:id="@+id/tvShelterId"
+        android:id="@+id/tvShelterName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Invalid Shelter"
@@ -16,23 +16,24 @@
         android:textSize="34sp"
         android:textStyle="bold"/>
     <TextView
-        android:id="@+id/tvShelterName"
+        android:id="@+id/tvShelterId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvShelterId"
+        android:layout_below="@id/tvShelterName"
         android:layout_marginTop="20dp"
-        android:text="Shelter name"
+        android:text=""
         android:gravity="center"
         android:textSize="16sp" />
     <Switch
         android:id="@+id/swInTaking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvShelterName"
+        android:layout_below="@id/tvShelterId"
         android:layout_centerHorizontal="true"
-        android:text="Enable In taking" />
+        android:text="Enable In taking"
+        android:onClick="toggleInTaking"/>
     <ListView
-        android:id="@+id/animallist"
+        android:id="@+id/lvAnimalList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/swInTaking"

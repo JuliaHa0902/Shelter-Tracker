@@ -20,6 +20,7 @@ public class Animal {
     private String shelterId;
     private String animalType;
     private Date receiptDate;
+    private Date releaseDate;
 
 
     /**
@@ -35,6 +36,7 @@ public class Animal {
         this.shelterId = (String) animalJSON.get("shelter_id");
         this.animalType = (String) animalJSON.get("animal_type");
         this.receiptDate = new Date((long) animalJSON.get("receipt_date"));
+        this.releaseDate = new Date( 0);
     }
 
     public Animal(Element animalXML, String shelterId) {
@@ -48,6 +50,7 @@ public class Animal {
             System.out.println("You forgot to put receipt date string! T_____T");
         }
         this.receiptDate = new Date(Long.parseLong(dateString));
+        this.releaseDate = new Date( 0);
         this.weight = Float.parseFloat(animalXML.getElementsByTagName("Weight").item(0).getTextContent());
         Element elementWeight = (Element) animalXML.getElementsByTagName("Weight").item(0);
         String unit = elementWeight.getAttribute("unit");
@@ -57,13 +60,14 @@ public class Animal {
         this.shelterId = shelterId;
     }
 
-    public Animal (String name, String animalId, float weight, String shelterId, String animalType, Date receiptDate) {
+    public Animal (String name, String animalId, float weight, String shelterId, String animalType, Date receiptDate, Date releaseDate) {
         this.name = name;
         this.animalId = animalId;
         this.weight = weight;
         this.shelterId = shelterId;
         this.animalType = animalType;
         this.receiptDate = receiptDate;
+        this.releaseDate = releaseDate;
     }
 
 
@@ -127,6 +131,14 @@ public class Animal {
 
     public String getAnimalType() {
         return animalType;
+    }
+
+    public void setReleaseDate (Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Date getReleaseDate () {
+        return this.releaseDate;
     }
 
 } //end of animal class

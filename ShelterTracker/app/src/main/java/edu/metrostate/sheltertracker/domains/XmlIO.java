@@ -1,5 +1,7 @@
 package edu.metrostate.sheltertracker.domains;
 
+import android.content.Context;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,13 +19,18 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 public class XmlIO implements IDataIO{
+    Context context;
+    public XmlIO(Context context) {
+        this.context = context;
+    }
+
     /**
      * Read xml file in path
      * return an array list of Shelter
      */
     @Override
     public Map<String, Shelter> convert(String fileName) throws IOException, ParseException, FileNotFoundException {
-        String filePath = MyPath.getResourcePath(fileName) + ".xml";
+        String filePath = MyPath.getResourcePath(this.context, fileName) + ".xml";
         try {
             File file = new File(filePath);
 
@@ -73,13 +80,13 @@ public class XmlIO implements IDataIO{
      */
     @Override
     public void dataExport(Map<String, Shelter> shelterList) throws FileNotFoundException {
-        String filePath = MyPath.getResourcePath("shelterExport.xml");
+        String filePath = MyPath.getResourcePath(this.context, "shelterExport.xml");
         PrintWriter pw = new PrintWriter(filePath);
         pw.println("<Shelters>");
         for (String key : shelterList.keySet()) {
             Shelter shelter = shelterList.get(key);
-            pw.printf("<Shelter id=\"%s\">\n", shelter.getId());
-            pw.printf("<Name>%s</Name>\n", shelter.getName());
+            pw.printf("<Shelter id=\"%s\">\n", shelter.getShelterId());
+            pw.printf("<Name>%s</Name>\n", shelter.getShelterName());
             Map<String, Animal> animalList = shelter.getAnimalList();
             for (String animalId : animalList.keySet()) {
                 Animal animal = animalList.get(animalId);

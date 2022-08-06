@@ -1,5 +1,7 @@
 package edu.metrostate.sheltertracker.domains;
 
+import android.content.Context;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -9,12 +11,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class JsonIO implements IDataIO{
+    public Context context;
+
+    public JsonIO(Context context) {
+        this.context = context;
+    }
 
     /**
      * Read json file in path
@@ -22,7 +28,7 @@ public class JsonIO implements IDataIO{
      */
     @Override
     public Map<String, Shelter> convert(String fileName) throws IOException, ParseException, FileNotFoundException {
-        String filePath = MyPath.getResourcePath(fileName) + ".json";
+        String filePath = MyPath.getResourcePath(this.context, fileName) + ".json";
         Map<String, Shelter> shelterList = new HashMap<>();
         Object obj = new JSONParser().parse(new FileReader(filePath));
         JSONObject jsonObject = (JSONObject) obj;
@@ -55,7 +61,7 @@ public class JsonIO implements IDataIO{
                 Animal animal = animalList.get(animalId);
                 Map animalJSON = new LinkedHashMap(6);
                 animalJSON.put("shelter_id", animal.getShelterId());
-                animalJSON.put("shelter_name", shelterList.get(shelterId).getName());
+                animalJSON.put("shelter_name", shelterList.get(shelterId).getShelterName());
                 animalJSON.put("animal_type", animal.getAnimalType());
                 animalJSON.put("animal_name", animal.getName());
                 animalJSON.put("animal_id", animal.getAnimalId());
@@ -67,7 +73,7 @@ public class JsonIO implements IDataIO{
         JSONObject animalListJSON = new JSONObject();
         animalListJSON.put("shelters", animalJSONArray);
 
-        String filePath = MyPath.getResourcePath("shelterExport.json");
+        String filePath = MyPath.getResourcePath(this.context, "shelterExport.json");
         PrintWriter pw = new PrintWriter(filePath);
         pw.write(animalListJSON.toJSONString());
         pw.flush();

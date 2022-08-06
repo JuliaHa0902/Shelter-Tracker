@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchShelter (View view) {
-//        Log.i ("MainActivity", "Shelter: " + etAnimalId.getText().toString());
         Intent intent = new Intent(this, ShelterActivity.class);
         if (etShelterId.getText().toString().equals("")) {
             Dialog dialog = new AlertDialog.Builder(this).setTitle("Empty shelter ID").setCancelable(false)

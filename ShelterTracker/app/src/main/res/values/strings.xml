@@ -2,6 +2,10 @@
     <string name="app_name">Shelter Tracker</string>
     <string name="ok">OK</string>
     <string name="title_activity_animal">AnimalActivity</string>
+    <string-array name="import_type">
+        <item>JSON</item>
+        <item>XML</item>
+    </string-array>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
